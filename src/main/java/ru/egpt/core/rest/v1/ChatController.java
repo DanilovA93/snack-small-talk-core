@@ -12,14 +12,10 @@ import ru.egpt.core.service.ChatService;
 
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 public class ChatController {
 
   private final ChatService chatService;
-
-  public ChatController(ChatService chatService) {
-    this.chatService = chatService;
-    System.out.println("!!!!!!!!!");
-  }
 
   @PostMapping(
       value = "/v1/chat/audio"

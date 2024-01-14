@@ -1,0 +1,7 @@
+chat:
+  asr:
+    endpoint: 'http://109.248.175.77:8001'
+  gpt:
+    endpoint: 'http://109.248.175.77:8082/api/generate'
+  tts:
+    endpoint: 'http://109.248.175.77:8000'

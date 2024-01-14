@@ -1,0 +1,7 @@
+chat:
+  asr:
+    endpoint: 'http://localhost:8001'
+  gpt:
+    endpoint: 'http://localhost:8082'
+  tts:
+    endpoint: 'http://localhost:8000'

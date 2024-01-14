@@ -1,7 +1,8 @@
 chat:
+  stub: false
   asr:
-    endpoint: 'http://localhost:8001'
+    endpoint: '-'
   gpt:
-    endpoint: 'http://localhost:8082'
+    endpoint: '-'
   tts:
-    endpoint: 'http://localhost:8000'
+    endpoint: '-'

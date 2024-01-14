@@ -24,14 +24,14 @@ public class ChatController {
       InputStream userSpeechInputStream,
       HttpServletResponse response
   ) throws IOException {
-    log.info("получено аудио сообщение на /v1/chat/audio");
+    log.info("[CHAT] получено аудио сообщение на /v1/chat/audio");
 
     InputStream botSpeechInputStream = chatService.chat(userSpeechInputStream);
     try {
       IOUtils.copy(botSpeechInputStream, response.getOutputStream());
       response.flushBuffer();
     } catch (IOException e) {
-      throw new IOException("Ошибка при попытке передачи данных в ответе", e);
+      throw new IOException("[CHAT] Ошибка при попытке передачи данных в ответе", e);
     }
   }
 }

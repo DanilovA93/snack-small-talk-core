@@ -1,9 +1,10 @@
-package ru.egpt.core.dao;
+package ru.egpt.core.dao.gpt;
 
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,6 +18,7 @@ import ru.egpt.core.dto.GPTDtoRs;
 @Component
 @RequiredArgsConstructor
 @Slf4j
+@ConditionalOnProperty(name="chat.stub", havingValue="false")
 public class GPTDaoImpl implements GPTDao {
 
   private final RestTemplate restTemplate;
@@ -49,6 +51,6 @@ public class GPTDaoImpl implements GPTDao {
     if (Objects.isNull(rs)) {
       throw new RuntimeException("[GPT] Ошибка: в ответе отсутствует тело");
     }
-    return rs.getResponse();
+    return getBaseAnswer();
   }
 }

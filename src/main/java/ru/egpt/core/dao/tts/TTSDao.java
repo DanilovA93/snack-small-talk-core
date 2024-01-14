@@ -1,4 +1,4 @@
-package ru.egpt.core.dao;
+package ru.egpt.core.dao.tts;
 
 import java.io.InputStream;
 

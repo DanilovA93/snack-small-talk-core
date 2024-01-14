@@ -23,7 +23,7 @@ public class ASRDaoImpl implements ASRDao {
 
   private final RestTemplate restTemplate;
 
-  @Value("${chat.asr.endpoint}")
+  @Value("${chat.services.asr.endpoint}")
   private String endpoint;
 
   @Override

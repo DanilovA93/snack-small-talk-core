@@ -23,7 +23,7 @@ public class GPTDaoImpl implements GPTDao {
 
   private final RestTemplate restTemplate;
 
-  @Value("${chat.gpt.endpoint}")
+  @Value("${chat.services.gpt.endpoint}")
   private String endpoint;
 
   @Override

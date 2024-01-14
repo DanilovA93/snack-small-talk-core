@@ -1,6 +1,5 @@
 package ru.egpt.core.dao.asr;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 @FunctionalInterface

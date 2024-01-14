@@ -1,8 +1,9 @@
 chat:
   stub: ${STUB}
-  asr:
-    endpoint: '-'
-  gpt:
-    endpoint: '-'
-  tts:
-    endpoint: '-'
+  services:
+    asr:
+      endpoint: '-'
+    gpt:
+      endpoint: '-'
+    tts:
+      endpoint: '-'

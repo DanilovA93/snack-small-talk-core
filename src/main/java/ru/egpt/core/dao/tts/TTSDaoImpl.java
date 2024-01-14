@@ -25,7 +25,7 @@ public class TTSDaoImpl implements TTSDao {
 
   private final RestTemplate restTemplate;
 
-  @Value("${chat.tts.endpoint}")
+  @Value("${chat.services.tts.endpoint}")
   private String endpoint;
 
   @Override

@@ -11,7 +11,7 @@
   <properties>
     <final.name>egpt</final.name>
     <java.version>11</java.version>
-    <org.projectlombok.lombok>1.18.24</org.projectlombok.lombok>
+    <org.projectlombok.lombok>1.18.30</org.projectlombok.lombok>
   </properties>
 
   <parent>

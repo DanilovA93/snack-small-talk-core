@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.egpt.core.service.ChatService;
 
 @Controller
-@RequiredArgsConstructor
 @Slf4j
 public class ChatController {
 
   private final ChatService chatService;
+
+  public ChatController(ChatService chatService) {
+    this.chatService = chatService;
+    System.out.println("!!!!!!!!!");
+  }
 
   @PostMapping(
       value = "/v1/chat/audio"

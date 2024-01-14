@@ -1,5 +1,5 @@
 chat:
-  stub: true
+  stub: false
   asr:
     endpoint: 'http://109.248.175.77:8001'
   gpt:

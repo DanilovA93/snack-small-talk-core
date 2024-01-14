@@ -1,21 +1,14 @@
 package ru.egpt.core.dao.tts;
 
-import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
-import ru.egpt.core.dto.TTSDtoRq;
+import org.springframework.util.ResourceUtils;
 
 @Component
 @RequiredArgsConstructor
@@ -26,9 +19,10 @@ public class TTSDaoImplStub implements TTSDao {
   @Override
   public InputStream getAudio(String text) {
     try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
+      File file = ResourceUtils.getFile("classpath:tts_stub");
+      return new FileInputStream(file);
+    } catch (FileNotFoundException e) {
+      return InputStream.nullInputStream();
     }
-    return InputStream.nullInputStream();
   }
 }

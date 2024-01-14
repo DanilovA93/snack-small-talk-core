@@ -1,5 +1,5 @@
 chat:
-  stub: false
+  stub: ${STUB}
   asr:
     endpoint: '-'
   gpt:

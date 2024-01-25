@@ -18,7 +18,7 @@ import ru.egpt.core.dto.GPTDtoRs;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-@ConditionalOnProperty(name="chat.stub", havingValue="false")
+@ConditionalOnProperty(name="chat.stub.enabled", havingValue="false")
 public class GPTDaoImpl implements GPTDao {
 
   private final RestTemplate restTemplate;

@@ -6,20 +6,28 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Slf4j
-@ConditionalOnProperty(name="chat.stub", havingValue="true")
+@ConditionalOnProperty(name="chat.stub.enabled", havingValue="true")
 public class TTSDaoImplStub implements TTSDao {
+
+  private final String path;
+
+  public TTSDaoImplStub(@Value("${chat.stub.file}") String path) {
+    this.path = path;
+  }
 
   @Override
   public InputStream getAudio(String text) {
     try {
-      File file = ResourceUtils.getFile("classpath:tts_stub");
+      File file = ResourceUtils.getFile(path);
       return new FileInputStream(file);
     } catch (FileNotFoundException e) {
       return InputStream.nullInputStream();

@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-@ConditionalOnProperty(name="chat.stub", havingValue="false")
+@ConditionalOnProperty(name="chat.stub.enabled", havingValue="false")
 public class ASRDaoImpl implements ASRDao {
 
   private final RestTemplate restTemplate;

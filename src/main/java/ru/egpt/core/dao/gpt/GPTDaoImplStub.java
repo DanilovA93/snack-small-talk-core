@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-@ConditionalOnProperty(name="chat.stub", havingValue="true")
+@ConditionalOnProperty(name="chat.stub.enabled", havingValue="true")
 public class GPTDaoImplStub implements GPTDao {
 
   @Override

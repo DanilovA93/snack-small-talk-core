@@ -1,5 +1,7 @@
 chat:
-  stub: ${STUB}
+  stub:
+    enabled: ${STUB_ENABLED}
+    file: ${STUB_FILE}
   services:
     asr:
       endpoint: '-'

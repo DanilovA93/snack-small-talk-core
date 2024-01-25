@@ -20,7 +20,7 @@ import ru.egpt.core.dto.TTSDtoRq;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-@ConditionalOnProperty(name="chat.stub", havingValue="false")
+@ConditionalOnProperty(name="chat.stub.enabled", havingValue="false")
 public class TTSDaoImpl implements TTSDao {
 
   private final RestTemplate restTemplate;

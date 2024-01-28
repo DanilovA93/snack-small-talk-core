@@ -48,6 +48,7 @@ public class GPTDaoImpl implements GPTDao {
     ResponseEntity<GPTDtoRs> responseEntity = restTemplate
         .exchange(endpoint, HttpMethod.POST, requestEntity, GPTDtoRs.class);
     GPTDtoRs rs = responseEntity.getBody();
+    log.info("Ответ GPT: " + rs);
     if (Objects.isNull(rs)) {
       throw new RuntimeException("[GPT] Ошибка: в ответе отсутствует тело");
     }

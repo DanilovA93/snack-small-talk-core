@@ -12,33 +12,35 @@ public class GPTDtoRq {
   private String prompt;
   private Options options = new Options();
 
+  @Getter
+  @Setter
   private static class Options {
 
     @JsonProperty("mirostat_eta")
-    float mirostatEta = 0.1f;
+    private float mirostatEta = 0.1f;
 
     @JsonProperty("mirostat_tau")
-    float mirostatTau = 1.0f;
+    private float mirostatTau = 1.0f;
 
     @JsonProperty("num_ctx")
-    int numCtx = 1024;
+    private int numCtx = 1024;
 
     @JsonProperty("num_thread")
     int numThread = 4;
 
     @JsonProperty("repeat_last_n")
-    int repeatLastN = 0;
+    private int repeatLastN = 0;
 
     @JsonProperty("tfs_z")
-    int tfsZ = 10;
+    private int tfsZ = 10;
 
     @JsonProperty("num_predict")
-    int numPredict = 256;
+    private int numPredict = 256;
 
     @JsonProperty("top_k")
-    int topK = 10;
+    private int topK = 10;
 
     @JsonProperty("top_p")
-    float topP = 0.2f;
+    private float topP = 0.2f;
   }
 }

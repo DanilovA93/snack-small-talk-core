@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import ru.egpt.core.service.ChatService;
 
 @Controller
@@ -18,6 +19,24 @@ public class ChatController {
   private final ChatService chatService;
 
   @PostMapping(
+      value = "/v1/chat/text"
+  )
+  public void createTesterProfilesByMails(
+      @RequestBody String text,
+      HttpServletResponse response
+  ) throws IOException {
+    log.info("[CHAT] получено текстовое сообщение на /v1/chat/text");
+
+    InputStream botSpeechInputStream = chatService.chat(text);
+    try {
+      IOUtils.copy(botSpeechInputStream, response.getOutputStream());
+      response.flushBuffer();
+    } catch (IOException e) {
+      throw new IOException("[CHAT] Ошибка при попытке передачи данных в ответе", e);
+    }
+  }
+
+  @PostMapping(
       value = "/v1/chat/audio"
   )
   public void createTesterProfilesByMails(
@@ -26,7 +45,7 @@ public class ChatController {
   ) throws IOException {
     log.info("[CHAT] получено аудио сообщение на /v1/chat/audio");
 
-    InputStream botSpeechInputStream = chatService.chat(userSpeechInputStream);
+    InputStream botSpeechInputStream = chatService.audioChat(userSpeechInputStream);
     try {
       IOUtils.copy(botSpeechInputStream, response.getOutputStream());
       response.flushBuffer();

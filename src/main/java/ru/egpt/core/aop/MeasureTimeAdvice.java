@@ -16,14 +16,13 @@ public class MeasureTimeAdvice {
 
   private final static Logger logger = LoggerFactory.getLogger(MeasureTimeAdvice.class);
 
-  @Around("@annotation(MeasureTime)")
-  public Object measureTime(ProceedingJoinPoint point) throws Throwable {
+  @Around("execution(public * *(..)) && @annotation(yourAnnotation)")
+  public Object measureTime(ProceedingJoinPoint point, MeasureTime yourAnnotation) throws Throwable {
     StopWatch stopWatch = new StopWatch();
     stopWatch.start();
     Object object = point.proceed();
     stopWatch.stop();
-    logger.info("Time take by " + point.getSignature().getName() + "() method is "
-        + stopWatch.getTotalTimeSeconds() + " sec");
+    logger.info("Потрачено " + stopWatch.getTotalTimeSeconds() + " сек. на " + yourAnnotation.value());
     return object;
   }
 }

@@ -28,7 +28,7 @@ public class ASRDaoImpl implements ASRDao {
   private String endpoint;
 
   @Override
-  @MeasureTime
+  @MeasureTime("ASR")
   public String getText(InputStream in) {
     try {
       HttpHeaders headers = new HttpHeaders();

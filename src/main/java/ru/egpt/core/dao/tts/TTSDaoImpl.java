@@ -30,7 +30,7 @@ public class TTSDaoImpl implements TTSDao {
   private String endpoint;
 
   @Override
-  @MeasureTime
+  @MeasureTime("TTS")
   public InputStream getAudio(String text) {
     HttpHeaders headers = new HttpHeaders();
     headers.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);

@@ -28,7 +28,7 @@ public class GPTDaoImpl implements GPTDao {
   private String endpoint;
 
   @Override
-  @MeasureTime
+  @MeasureTime("GPT")
   public String getAnswer(String text) {
     if (text.isBlank()) {
       log.warn("[GPT] Предупреждение: пустой текст запроса");

@@ -4,8 +4,8 @@ chat:
     file: ${STUB_FILE}
   services:
     asr:
-      endpoint: '-'
+      endpoint: ${ASR_ENDPOINT}
     gpt:
-      endpoint: '-'
+      endpoint: ${GPT_ENDPOINT}
     tts:
-      endpoint: '-'
+      endpoint: ${TTS_ENDPOINT}

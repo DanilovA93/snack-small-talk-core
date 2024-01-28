@@ -52,6 +52,6 @@ public class GPTDaoImpl implements GPTDao {
     if (Objects.isNull(rs)) {
       throw new RuntimeException("[GPT] Ошибка: в ответе отсутствует тело");
     }
-    return getBaseAnswer();
+    return rs.getResponse();
   }
 }

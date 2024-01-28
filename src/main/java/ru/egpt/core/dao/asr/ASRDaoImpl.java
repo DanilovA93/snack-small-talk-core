@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import ru.egpt.core.aop.MeasureTime;
 
 @Component
 @RequiredArgsConstructor
@@ -27,6 +28,7 @@ public class ASRDaoImpl implements ASRDao {
   private String endpoint;
 
   @Override
+  @MeasureTime
   public String getText(InputStream in) {
     try {
       HttpHeaders headers = new HttpHeaders();

@@ -4,9 +4,9 @@ import java.io.InputStream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.egpt.core.dao.tts.TTSDao;
-import ru.egpt.core.dao.gpt.GPTDao;
 import ru.egpt.core.dao.asr.ASRDao;
+import ru.egpt.core.dao.gpt.GPTDao;
+import ru.egpt.core.dao.tts.TTSDao;
 
 @Service
 @RequiredArgsConstructor
@@ -19,24 +19,13 @@ public class ChatServiceImpl implements ChatService {
 
   @Override
   public InputStream audioChat(InputStream userSpeechInputStream) {
-    long start = System.nanoTime();
     String userText = ASRDao.getText(userSpeechInputStream);
-    long asr = System.nanoTime() - start;
-    log.info("ASR time: " + asr / 1_000_000_000);
     return chat(userText);
   }
 
   @Override
   public InputStream chat(String userText) {
-    long start = System.nanoTime();
     String botText = gptDao.getAnswer(userText);
-    long gpt = System.nanoTime() - start;
-    log.info("GTP time: " + gpt / 1_000_000_000);
-    start = System.nanoTime();
-    InputStream in = ttsDao.getAudio(botText);
-    long tts = System.nanoTime() - start;
-    log.info("TTS time: " + tts / 1_000_000_000);
-
-    return in;
+    return ttsDao.getAudio(botText);
   }
 }

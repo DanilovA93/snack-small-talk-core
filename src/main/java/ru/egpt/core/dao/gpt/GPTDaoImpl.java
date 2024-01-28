@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import ru.egpt.core.aop.MeasureTime;
 import ru.egpt.core.dto.GPTDtoRq;
 import ru.egpt.core.dto.GPTDtoRs;
 
@@ -27,6 +28,7 @@ public class GPTDaoImpl implements GPTDao {
   private String endpoint;
 
   @Override
+  @MeasureTime
   public String getAnswer(String text) {
     if (text.isBlank()) {
       log.warn("[GPT] Предупреждение: пустой текст запроса");

@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import ru.egpt.core.aop.MeasureTime;
 import ru.egpt.core.dto.TTSDtoRq;
 
 @Component
@@ -29,6 +30,7 @@ public class TTSDaoImpl implements TTSDao {
   private String endpoint;
 
   @Override
+  @MeasureTime
   public InputStream getAudio(String text) {
     HttpHeaders headers = new HttpHeaders();
     headers.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);

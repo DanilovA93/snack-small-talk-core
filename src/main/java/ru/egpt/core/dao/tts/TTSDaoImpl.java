@@ -35,6 +35,11 @@ public class TTSDaoImpl implements TTSDao {
     headers.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
     TTSDtoRq rq = new TTSDtoRq();
     rq.setText(text);
+
+    log.info("Headers: {}", headers);
+    log.info("First: {}", headers.getFirst("speaker_id"));
+    log.info("Long value: {}", Long.getLong(headers.getFirst("speaker_id")));
+
     rq.setSpeakerId(Long.getLong(headers.getFirst("speaker_id")));
     HttpEntity<TTSDtoRq> requestEntity = new HttpEntity<>(rq, headers);
     log.info("TTS Rq: {}", requestEntity);

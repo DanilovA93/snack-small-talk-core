@@ -37,6 +37,7 @@ public class TTSDaoImpl implements TTSDao {
     rq.setText(text);
     rq.setSpeakerId(Long.getLong(headers.getFirst("speaker_id")));
     HttpEntity<TTSDtoRq> requestEntity = new HttpEntity<>(rq, headers);
+    log.info("TTS Rq: {}", requestEntity);
     ResponseEntity<Resource> responseEntity = restTemplate.exchange(endpoint, HttpMethod.POST, requestEntity, Resource.class);
     Resource rs = responseEntity.getBody();
     if (Objects.isNull(rs)) {

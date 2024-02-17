@@ -9,11 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
 @Component
-//@RequiredArgsConstructor
 @Slf4j
 @ConditionalOnProperty(name="chat.stub.enabled", havingValue="true")
 public class TTSDaoImplStub implements TTSDao {
@@ -25,7 +25,7 @@ public class TTSDaoImplStub implements TTSDao {
   }
 
   @Override
-  public InputStream getAudio(String text) {
+  public InputStream getAudio(HttpHeaders headers, String text) {
     try {
       File file = ResourceUtils.getFile(path);
       return new FileInputStream(file);

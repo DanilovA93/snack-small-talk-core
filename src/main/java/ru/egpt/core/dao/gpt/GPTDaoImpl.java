@@ -47,13 +47,13 @@ public class GPTDaoImpl implements GPTDao {
     GPTDtoRq rq = new GPTDtoRq();
     rq.setPrompt(text);
     HttpEntity<GPTDtoRq> requestEntity = new HttpEntity<>(rq, headers);
-    ResponseEntity<GPTDtoRs> responseEntity = restTemplate
-        .exchange(endpoint, HttpMethod.POST, requestEntity, GPTDtoRs.class);
-    GPTDtoRs rs = responseEntity.getBody();
+    ResponseEntity<String> responseEntity = restTemplate
+        .exchange(endpoint, HttpMethod.POST, requestEntity, String.class);
+    String rs = responseEntity.getBody();
     if (Objects.isNull(rs)) {
       log.error("[GPT] Ошибка: в ответе отсутствует тело");
       return getBaseAnswer();
     }
-    return rs.getResponse();
+    return rs;
   }
 }

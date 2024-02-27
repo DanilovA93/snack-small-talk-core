@@ -46,6 +46,7 @@ public class GPTDaoImpl implements GPTDao {
     GPTDtoRq rq = new GPTDtoRq();
     rq.setPrompt(text);
     HttpEntity<GPTDtoRq> requestEntity = new HttpEntity<>(rq, headers);
+    log.info("[GPT] Информация: запрос с телом {}", rq);
     ResponseEntity<String> responseEntity = restTemplate
         .exchange(endpoint, HttpMethod.POST, requestEntity, String.class);
     String rs = responseEntity.getBody();

@@ -1,0 +1,17 @@
+version: "3"
+services:
+  egpt: 
+    image: anton666/egpt
+    container_name: snack-small-talk-core
+    ports:
+      - 8085:8080
+    volumes:
+      - ./files:/files
+    environment:
+      - SPRING_PROFILES_ACTIVE=PROM
+      - STUB_ENABLED=false
+      - STUB_FILE=./files/tts_stub
+      - ASR_ENDPOINT=localhost:8000
+      - GPT_ENDPOINT=localhost:8001
+      - TTS_ENDPOINT=localhost:8002
+    restart: unless-stopped

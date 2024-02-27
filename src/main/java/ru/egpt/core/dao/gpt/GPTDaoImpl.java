@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ru.egpt.core.aop.MeasureTime;
 import ru.egpt.core.dto.GPTDtoRq;
-import ru.egpt.core.dto.GPTDtoRs;
 
 @Component
 @RequiredArgsConstructor

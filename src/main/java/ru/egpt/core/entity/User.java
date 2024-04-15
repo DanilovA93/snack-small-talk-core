@@ -2,6 +2,7 @@ package ru.egpt.core.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,7 +16,8 @@ import java.util.Set;
         })
 @Getter
 @Setter
-public class User {
+@Where(clause = "is_enabled = true")
+public class User extends AbstractEntity {
 
     @Id
     @SequenceGenerator(

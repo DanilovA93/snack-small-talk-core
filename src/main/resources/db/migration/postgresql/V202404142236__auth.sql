@@ -9,7 +9,11 @@ CREATE TABLE IF NOT EXISTS users
             PRIMARY KEY,
     email       VARCHAR(50) NOT NULL,
     password    VARCHAR(120) NOT NULL,
-    username    VARCHAR(20) NOT NULL
+    username    VARCHAR(20) NOT NULL,
+    created     TIMESTAMP,
+    updated     TIMESTAMP,
+    version     BIGINT,
+    is_enabled  BOOLEAN
 );
 
 --------------------------------CREATE TABLE ROLES
@@ -29,13 +33,33 @@ CREATE TABLE IF NOT EXISTS roles
 CREATE TABLE IF NOT EXISTS user_roles
 (
     user_id BIGINT NOT NULL
-        CONSTRAINT fk_user_roles_user_id REFERENCES users,
+        CONSTRAINT user_roles_user_id_fk REFERENCES users,
     role_id BIGINT NOT NULL
-        CONSTRAINT fk_user_roles_role_id REFERENCES roles
+        CONSTRAINT user_roles_role_id_fk REFERENCES roles
 );
 
-CREATE INDEX IF NOT EXISTS in_consent$tester_id$consent_document_id
+CREATE INDEX IF NOT EXISTS user_roles$user_id$role_id
     ON user_roles (user_id, role_id);
+
+--------------------------------CREATE TABLE USERS
+--------------------------------------------------
+CREATE SEQUENCE IF NOT EXISTS messages_id_seq INCREMENT BY 10;
+
+CREATE TABLE IF NOT EXISTS messages
+(
+    id          BIGINT NOT NULL
+        CONSTRAINT messages_pk
+            PRIMARY KEY,
+    user_id     BIGINT NOT NULL
+        CONSTRAINT messages_user_id_fk REFERENCES users,
+    request     VARCHAR,
+    response    VARCHAR,
+    created     TIMESTAMP,
+    updated     TIMESTAMP,
+    version     BIGINT,
+    is_enabled  BOOLEAN
+        default true
+);
 
 --------------------------------------INSERT ROLES
 --------------------------------------------------

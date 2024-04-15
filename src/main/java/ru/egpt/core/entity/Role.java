@@ -1,14 +1,13 @@
 package ru.egpt.core.entity;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.egpt.core.entity.enumeration.ERole;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
-@NoArgsConstructor
 @Getter
 @Setter
 public class Role {
@@ -20,8 +19,4 @@ public class Role {
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private ERole name;
-
-    public Role(ERole name) {
-        this.name = name;
-    }
 }

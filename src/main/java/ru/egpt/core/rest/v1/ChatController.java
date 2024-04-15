@@ -1,17 +1,19 @@
 package ru.egpt.core.rest.v1;
 
-import java.io.IOException;
-import java.io.InputStream;
-import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import ru.egpt.core.service.ChatService;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Controller
 @Slf4j
@@ -21,7 +23,7 @@ public class ChatController {
   private final ChatService chatService;
 
   @PostMapping(
-      value = "/v1/chat/text"
+      value = "/api/v1/chat/text"
   )
   public void chatWithAudio(
       @RequestHeader HttpHeaders headers,
@@ -40,7 +42,7 @@ public class ChatController {
   }
 
   @PostMapping(
-      value = "/v1/chat/audio"
+      value = "/api/v1/chat/audio"
   )
   public void chatWithText(
       @RequestHeader HttpHeaders headers,

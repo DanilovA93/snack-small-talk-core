@@ -1,5 +1,14 @@
 server:
   port: 8085
+spring:
+  datasource:
+    url: jdbc:postgresql://213.159.214.122:5432/postgres
+    username: postgres
+    password: qwerty123
+snack-small-talk:
+  app:
+    jwtSecret: ======================SSTCoder=Spring===========================
+    jwtExpirationMs: 86400000
 chat:
   stub:
     enabled: ${STUB_ENABLED}

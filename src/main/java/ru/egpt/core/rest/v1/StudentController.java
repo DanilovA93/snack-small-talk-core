@@ -39,7 +39,7 @@ public class StudentController {
     private final PasswordEncoder encoder;
     private final JwtUtils jwtUtils;
 
-    @PostMapping("/api/students/auth/signin")
+    @PostMapping("/api/auth/signin")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager
                 .authenticate(
@@ -69,7 +69,7 @@ public class StudentController {
         );
     }
 
-    @PostMapping("/api/students/auth/signup")
+    @PostMapping("/api/auth/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));

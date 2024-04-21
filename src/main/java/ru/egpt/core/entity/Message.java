@@ -27,7 +27,9 @@ public class Message extends AbstractEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "request")
     private String request;
 
+    @Column(name = "response")
     private String response;
 }

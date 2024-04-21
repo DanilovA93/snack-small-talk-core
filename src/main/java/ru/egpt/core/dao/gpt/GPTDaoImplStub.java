@@ -17,6 +17,6 @@ public class GPTDaoImplStub implements GPTDao {
       Thread.sleep(1000);
     } catch (InterruptedException ignored) {
     }
-    return "";
+    return "This is a stub answer";
   }
 }

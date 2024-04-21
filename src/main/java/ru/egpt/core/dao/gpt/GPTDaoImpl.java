@@ -28,25 +28,24 @@ public class GPTDaoImpl implements GPTDao {
 
   @Override
   @MeasureTime("GPT")
-  public String getAnswer(String text) {
+  public String getText(String username, String text) {
     if (text.isBlank()) {
       log.warn("[GPT] Предупреждение: пустой текст запроса");
       return getBaseAnswer();
     }
-    return getGeneratedAnswer(text);
+    return getGeneratedAnswer(username, text);
   }
 
   private String getBaseAnswer() {
     return "Please repeat the question";
   }
 
-  private String getGeneratedAnswer(String text) {
+  private String getGeneratedAnswer(String username, String text) {
     HttpHeaders headers = new HttpHeaders();
     headers.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
-    GPTDtoRq rq = new GPTDtoRq();
-    rq.setPrompt(text);
+    GPTDtoRq rq = new GPTDtoRq(username, text);
     HttpEntity<GPTDtoRq> requestEntity = new HttpEntity<>(rq, headers);
-    log.info("[GPT] Информация: запрос с телом {}", rq);
+    log.info("[GPT] Тело запроса: ", rq);
     ResponseEntity<String> responseEntity = restTemplate
         .exchange(endpoint, HttpMethod.POST, requestEntity, String.class);
     String rs = responseEntity.getBody();

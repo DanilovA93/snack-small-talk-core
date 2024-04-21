@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 public class GPTDaoImplStub implements GPTDao {
 
   @Override
-  public String getAnswer(String text) {
+  public String getText(String username, String text) {
     try {
       Thread.sleep(1000);
-    } catch (InterruptedException e) {
+    } catch (InterruptedException ignored) {
     }
     return "";
   }

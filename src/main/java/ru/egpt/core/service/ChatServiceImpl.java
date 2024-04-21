@@ -14,19 +14,27 @@ import ru.egpt.core.dao.tts.TTSDao;
 @Slf4j
 public class ChatServiceImpl implements ChatService {
 
-  private final ASRDao ASRDao;
+  private final ASRDao asrDao;
   private final GPTDao gptDao;
   private final TTSDao ttsDao;
 
   @Override
-  public InputStream audioChat(HttpHeaders headers, InputStream userSpeechInputStream) {
-    String userText = ASRDao.getText(userSpeechInputStream);
-    return chat(headers, userText);
+  public InputStream audioChat(
+          HttpHeaders headers,
+          String username,
+          InputStream userSpeechInputStream
+  ) {
+    String userText = asrDao.getText(userSpeechInputStream);
+    return chat(headers, username, userText);
   }
 
   @Override
-  public InputStream chat(HttpHeaders headers, String userText) {
-    String botText = gptDao.getAnswer(userText);
+  public InputStream chat(
+          HttpHeaders headers,
+          String username,
+          String message
+  ) {
+    String botText = gptDao.getText(username, message);
     return ttsDao.getAudio(headers, botText);
   }
 }

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.security.Key;
 import java.util.Date;
@@ -20,6 +21,14 @@ public class JwtUtils {
 
     @Value("${snack-small-talk.app.jwtExpirationMs}")
     private int jwtExpirationMs;
+
+    public String parseJwt(String authorizationHeader) {
+        if (StringUtils.hasText(authorizationHeader) && authorizationHeader.startsWith("Bearer ")) {
+            return authorizationHeader.split(" ")[1].trim();
+        }
+
+        return null;
+    }
 
     public String generateJwtToken(Authentication authentication) {
 

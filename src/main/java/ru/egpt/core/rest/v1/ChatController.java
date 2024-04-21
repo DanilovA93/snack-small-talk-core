@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.http.HttpHeaders;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import ru.egpt.core.security.JwtUtils;
 import ru.egpt.core.service.ChatService;
 
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +21,7 @@ import java.io.InputStream;
 public class ChatController {
 
   private final ChatService chatService;
+  private final JwtUtils jwtUtils;
 
   @PostMapping(
       value = "/api/v1/chat/text"
@@ -32,7 +33,9 @@ public class ChatController {
   ) throws IOException {
     log.info("[CHAT] получено текстовое сообщение на /v1/chat/text");
 
-    InputStream botSpeechInputStream = chatService.chat(headers, text);
+    String jwt = jwtUtils.parseJwt(headers.getFirst("Authorization"));
+    String username = jwtUtils.getUserNameFromJwtToken(jwt);
+    InputStream botSpeechInputStream = chatService.chat(headers, username, text);
     try {
       IOUtils.copy(botSpeechInputStream, response.getOutputStream());
       response.flushBuffer();
@@ -51,7 +54,9 @@ public class ChatController {
   ) throws IOException {
     log.info("[CHAT] получено аудио сообщение на /v1/chat/audio");
 
-    InputStream botSpeechInputStream = chatService.audioChat(headers, userSpeechInputStream);
+    String jwt = jwtUtils.parseJwt(headers.getFirst("Authorization"));
+    String username = jwtUtils.getUserNameFromJwtToken(jwt);
+    InputStream botSpeechInputStream = chatService.audioChat(headers, username, userSpeechInputStream);
     try {
       IOUtils.copy(botSpeechInputStream, response.getOutputStream());
       response.flushBuffer();

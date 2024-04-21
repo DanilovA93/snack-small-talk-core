@@ -9,9 +9,5 @@ import lombok.ToString;
 @Setter
 @ToString
 public class TTSDtoRq {
-
-  @JsonProperty("speaker_id")
-  private Long speakerId;
-
   private String text;
 }

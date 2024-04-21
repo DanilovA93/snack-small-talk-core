@@ -32,18 +32,10 @@ public class TTSDaoImpl implements TTSDao {
   @Override
   @MeasureTime("TTS")
   public InputStream getAudio(HttpHeaders headers, String text) {
-    long speakerId = Long.parseLong(
-        Objects.requireNonNull(
-            headers.getFirst("speaker_id"),
-            "\"speaker_id\" of header is null"
-        )
-    );
     headers.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
     TTSDtoRq rq = new TTSDtoRq();
     rq.setText(text);
-    rq.setSpeakerId(speakerId);
     HttpEntity<TTSDtoRq> requestEntity = new HttpEntity<>(rq, headers);
-    log.info("TTS Rq: {}", requestEntity);
     ResponseEntity<Resource> responseEntity = restTemplate.exchange(endpoint, HttpMethod.POST, requestEntity, Resource.class);
     Resource rs = responseEntity.getBody();
     if (Objects.isNull(rs)) {

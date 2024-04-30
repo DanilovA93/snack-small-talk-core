@@ -1,7 +1,7 @@
 version: "3"
 services:
   egpt: 
-    image: anton666/egpt
+    image: anton666/snack-small-talk
     container_name: snack-small-talk-core
     ports:
       - 8085:8080

@@ -25,7 +25,7 @@ public class TTSDaoImplStub implements TTSDao {
   }
 
   @Override
-  public InputStream getAudio(HttpHeaders headers, String text) {
+  public InputStream getAudio(HttpHeaders headers, String prompt) {
     try {
       File file = ResourceUtils.getFile(path);
       return new FileInputStream(file);

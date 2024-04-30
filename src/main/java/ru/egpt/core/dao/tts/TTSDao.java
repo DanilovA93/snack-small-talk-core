@@ -5,5 +5,5 @@ import org.springframework.http.HttpHeaders;
 
 @FunctionalInterface
 public interface TTSDao {
-  InputStream getAudio(HttpHeaders headers, String text);
+  InputStream getAudio(HttpHeaders headers, String prompt);
 }

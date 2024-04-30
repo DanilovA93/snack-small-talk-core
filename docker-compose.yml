@@ -4,7 +4,7 @@ services:
     image: anton666/snack-small-talk
     container_name: snack-small-talk-core
     ports:
-      - 8085:8080
+      - 8085:8085
     volumes:
       - ./files:/files
     environment:

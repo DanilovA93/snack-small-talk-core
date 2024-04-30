@@ -58,9 +58,10 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth
-                                .antMatchers("/api/auth/**").permitAll()
-                                .antMatchers("/v1/chat/text"). hasAnyRole("MODERATOR", "ADMIN")
-                                .anyRequest().authenticated()
+                                .antMatchers("/**").permitAll()
+//                                .antMatchers("/api/auth/**").permitAll()
+//                                .antMatchers("/v1/chat/text"). hasAnyRole("MODERATOR", "ADMIN")
+//                                .anyRequest().authenticated()
                 );
 
         http.authenticationProvider(authenticationProvider());

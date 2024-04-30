@@ -8,5 +8,5 @@ import lombok.ToString;
 @Setter
 @ToString
 public class TTSDtoRq {
-  private String text;
+  private String prompt;
 }

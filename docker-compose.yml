@@ -3,8 +3,6 @@ services:
   snack-small-talk-core:
     image: anton666/snack-small-talk
     container_name: snack-small-talk-core
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     ports:
       - 8085:8085
     volumes:

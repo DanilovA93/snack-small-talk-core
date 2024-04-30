@@ -10,10 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.egpt.core.entity.Role;
 import ru.egpt.core.entity.User;
 import ru.egpt.core.entity.enumeration.ERole;
@@ -41,7 +38,7 @@ public class StudentController {
     private final PasswordEncoder encoder;
     private final JwtUtils jwtUtils;
 
-    @PostMapping("/hello")
+    @GetMapping("/hello")
     public ResponseEntity<String> getOk() {
         return ResponseEntity.ok("Hello");
     }

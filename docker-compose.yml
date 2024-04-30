@@ -11,7 +11,7 @@ services:
       - SPRING_PROFILES_ACTIVE=PROM
       - STUB_ENABLED=false
       - STUB_FILE=./files/tts_stub
-      - ASR_ENDPOINT=localhost:8000
-      - GPT_ENDPOINT=localhost:8001
-      - TTS_ENDPOINT=localhost:8002
+      - ASR_ENDPOINT=http://localhost:8000
+      - GPT_ENDPOINT=http://localhost:8001
+      - TTS_ENDPOINT=http://localhost:8002
     restart: unless-stopped

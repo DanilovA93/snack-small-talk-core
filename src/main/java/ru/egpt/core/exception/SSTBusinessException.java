@@ -7,7 +7,6 @@ import ru.egpt.core.dao.model.ServiceType;
 
 @Getter
 @Setter
-@Builder
 public class SSTBusinessException extends RuntimeException {
 
     private final ServiceType serviceType;

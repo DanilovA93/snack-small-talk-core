@@ -25,17 +25,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         );
     }
 
-//    @ExceptionHandler({
-//            RuntimeException.class
-//    })
-//    public ResponseEntity<Object> handleCateringException(SSTBusinessException ex) {
-//        return new ResponseEntity<>(
-//                SSTBusinessExceptionRs.builder()
-//                        .serviceType(ex.)
-//                        .error(ex.getMessage())
-//                        .build(),
-//                HttpStatus.INTERNAL_SERVER_ERROR
-//        );
-//    }
+    @ExceptionHandler({
+            RuntimeException.class
+    })
+    public ResponseEntity<Object> handleCateringException(SSTBusinessException ex) {
+        return new ResponseEntity<>(
+                SSTBusinessExceptionRs.builder()
+                        .serviceType(ex.getServiceType())
+                        .description(ex.getDescription())
+                        .message(ex.getMessage())
+                        .build(),
+                HttpStatus.INTERNAL_SERVER_ERROR
+        );
+    }
 }
 

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import ru.egpt.core.exception.SSTBusinessException;
 import ru.egpt.core.exception.SSTBusinessExceptionRs;
 
 import javax.validation.ConstraintViolationException;
@@ -24,16 +25,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         );
     }
 
-    @ExceptionHandler({
-            RuntimeException.class
-    })
-    public ResponseEntity<Object> handleCateringException(RuntimeException ex) {
-        return new ResponseEntity<>(
-                SSTBusinessExceptionRs.builder()
-                        .error(ex.getMessage())
-                        .build(),
-                HttpStatus.INTERNAL_SERVER_ERROR
-        );
-    }
+//    @ExceptionHandler({
+//            RuntimeException.class
+//    })
+//    public ResponseEntity<Object> handleCateringException(SSTBusinessException ex) {
+//        return new ResponseEntity<>(
+//                SSTBusinessExceptionRs.builder()
+//                        .serviceType(ex.)
+//                        .error(ex.getMessage())
+//                        .build(),
+//                HttpStatus.INTERNAL_SERVER_ERROR
+//        );
+//    }
 }
 

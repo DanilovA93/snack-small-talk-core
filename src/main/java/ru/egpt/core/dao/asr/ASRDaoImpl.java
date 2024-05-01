@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ru.egpt.core.aop.MeasureTime;
+import ru.egpt.core.dao.model.ServiceType;
+import ru.egpt.core.exception.SSTBusinessException;
 
 @Component
 @RequiredArgsConstructor
@@ -42,8 +44,9 @@ public class ASRDaoImpl implements ASRDao {
       }
       return text;
     } catch (Exception e) {
-      throw new RuntimeException(
-              "[ASR] " + e.getMessage(),
+      throw new SSTBusinessException(
+              ServiceType.ASR,
+              "Ошибка при обращении к сервису",
               e
       );
     }

@@ -16,7 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ru.egpt.core.aop.MeasureTime;
+import ru.egpt.core.dao.model.ServiceType;
 import ru.egpt.core.dto.TTSDtoRq;
+import ru.egpt.core.exception.SSTBusinessException;
 
 @Component
 @RequiredArgsConstructor
@@ -49,8 +51,9 @@ public class TTSDaoImpl implements TTSDao {
       }
     }
     catch (Exception e) {
-      throw new RuntimeException(
-              "[TTS] " + e.getMessage(),
+      throw new SSTBusinessException(
+              ServiceType.TTS,
+              "Ошибка при обращении к сервису",
               e
       );
     }

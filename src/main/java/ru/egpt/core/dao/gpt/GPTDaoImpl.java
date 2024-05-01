@@ -13,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ru.egpt.core.aop.MeasureTime;
+import ru.egpt.core.dao.model.ServiceType;
 import ru.egpt.core.dto.GPTDtoRq;
+import ru.egpt.core.exception.SSTBusinessException;
 
 @Component
 @RequiredArgsConstructor
@@ -55,8 +57,9 @@ public class GPTDaoImpl implements GPTDao {
       }
       return rs;
     } catch (Exception e) {
-      throw new RuntimeException(
-              "[GPT] " + e.getMessage(),
+      throw new SSTBusinessException(
+              ServiceType.GPT,
+              "Ошибка при обращении к сервису",
               e
       );
     }

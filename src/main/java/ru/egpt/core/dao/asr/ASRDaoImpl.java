@@ -38,11 +38,14 @@ public class ASRDaoImpl implements ASRDao {
           .exchange(endpoint, HttpMethod.POST, requestEntity, String.class);
       String text = responseEntity.getBody();
       if (Objects.isNull(text)) {
-        throw new RuntimeException("[ASR] Ошибка: в ответе отсутствует тело");
+        throw new RuntimeException("Ошибка: в ответе отсутствует тело");
       }
       return text;
-    } catch (IOException e) {
-      throw new RuntimeException("[ASR] Ошибка: невозможно прочитать аудио файл", e);
+    } catch (Exception e) {
+      throw new RuntimeException(
+              "[ASR] " + e.getMessage(),
+              e
+      );
     }
   }
 }

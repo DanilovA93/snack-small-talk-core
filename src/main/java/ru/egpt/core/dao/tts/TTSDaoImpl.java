@@ -32,20 +32,27 @@ public class TTSDaoImpl implements TTSDao {
   @Override
   @MeasureTime("TTS")
   public InputStream getAudio(HttpHeaders headers, String prompt) {
-    headers.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
-    TTSDtoRq rq = new TTSDtoRq();
-    rq.setPrompt(prompt);
-    HttpEntity<TTSDtoRq> requestEntity = new HttpEntity<>(rq, headers);
-    ResponseEntity<Resource> responseEntity = restTemplate.exchange(endpoint, HttpMethod.POST, requestEntity, Resource.class);
-    Resource rs = responseEntity.getBody();
-    if (Objects.isNull(rs)) {
-      throw new RuntimeException("[TTS] Ошибка: в ответе отсутствует тело");
+    try {
+      headers.set("Content-Type", MediaType.APPLICATION_JSON_VALUE);
+      TTSDtoRq rq = new TTSDtoRq();
+      rq.setPrompt(prompt);
+      HttpEntity<TTSDtoRq> requestEntity = new HttpEntity<>(rq, headers);
+      ResponseEntity<Resource> responseEntity = restTemplate.exchange(endpoint, HttpMethod.POST, requestEntity, Resource.class);
+      Resource rs = responseEntity.getBody();
+      if (Objects.isNull(rs)) {
+        throw new RuntimeException("Ошибка: в ответе отсутствует тело");
+      }
+      try (InputStream is = rs.getInputStream()) {
+        return is;
+      } catch (IOException e) {
+        throw new RuntimeException("Ошибка: ", e);
+      }
     }
-
-    try (InputStream is = rs.getInputStream()) {
-      return is;
-    } catch (IOException e) {
-      throw new RuntimeException("[TTS] Ошибка: ", e);
+    catch (Exception e) {
+      throw new RuntimeException(
+              "[TTS] " + e.getMessage(),
+              e
+      );
     }
   }
 }
